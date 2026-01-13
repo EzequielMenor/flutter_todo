@@ -1,0 +1,10 @@
+{
+	"configurations": [
+		{
+			"name": "Flutter (lib/widgets/tarjeta_tarea.dart)",
+			"type": "dart",
+			"request": "launch",
+			"program": "lib/widgets/tarjeta_tarea.dart"
+		}
+	]
+}
