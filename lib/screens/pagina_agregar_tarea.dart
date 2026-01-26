@@ -17,6 +17,7 @@ class PaginaAgregarTarea extends StatefulWidget {
 class _PaginaAgregarTareaState extends State<PaginaAgregarTarea> {
   late TextEditingController _nombreController;
   late TextEditingController _descripcionController;
+  late CategoriaTarea _categoriaSeleccionada;
 
   @override
   void initState() {
@@ -27,6 +28,8 @@ class _PaginaAgregarTareaState extends State<PaginaAgregarTarea> {
     _descripcionController = TextEditingController(
       text: widget.tareaParaEditar?.descripcion ?? '',
     );
+    _categoriaSeleccionada =
+        widget.tareaParaEditar?.categoria ?? CategoriaTarea.personal;
   }
 
   @override
@@ -46,6 +49,7 @@ class _PaginaAgregarTareaState extends State<PaginaAgregarTarea> {
       nombre: _nombreController.text,
       descripcion: _descripcionController.text,
       completado: widget.tareaParaEditar?.completado ?? false,
+      categoria: _categoriaSeleccionada,
     );
 
     Navigator.pop(context, nuevaTarea);
@@ -85,6 +89,28 @@ class _PaginaAgregarTareaState extends State<PaginaAgregarTarea> {
                   contentPadding: EdgeInsets.all(16.0),
                   label: Text('Descripción'),
                 ),
+              ),
+              const SizedBox(height: 16.0),
+              DropdownButtonFormField<CategoriaTarea>(
+                value: _categoriaSeleccionada,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.all(16.0),
+                  label: Text('Categoría'),
+                ),
+                items: CategoriaTarea.values.map((categoria) {
+                  return DropdownMenuItem(
+                    value: categoria,
+                    child: Text(categoria.nombreCapitalizado),
+                  );
+                }).toList(),
+                onChanged: (CategoriaTarea? nuevaCategoria) {
+                  if (nuevaCategoria != null) {
+                    setState(() {
+                      _categoriaSeleccionada = nuevaCategoria;
+                    });
+                  }
+                },
               ),
               const SizedBox(height: 24.0),
               SizedBox(

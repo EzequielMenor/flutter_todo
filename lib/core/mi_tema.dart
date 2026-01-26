@@ -2,31 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material/core/colores_app.dart';
 
-final miTema = ThemeData(
-  primaryColor: ColoresApp.primario,
-  scaffoldBackgroundColor: ColoresApp.surface2,
-  colorScheme: const ColorScheme.highContrastLight(
-    primary: ColoresApp.primario,
-    secondary: ColoresApp.secundario,
-    surface: ColoresApp.surface,
-    onPrimary: ColoresApp.foregraund,
-    onSurface: ColoresApp.foregraund,
-  ),
+ThemeData buildTheme(Color primaryColor, Brightness brightness) {
+  final isDark = brightness == Brightness.dark;
+  final baseTheme = isDark ? ThemeData.dark() : ThemeData.light();
 
-  textTheme: GoogleFonts.interTextTheme(
-    ThemeData.light().textTheme.copyWith(
-      bodyMedium: const TextStyle(color: ColoresApp.foregraund),
-      bodyLarge: const TextStyle(color: ColoresApp.foregraund),
-    ),
-  ),
+  // Basic colors based on mode
+  // Basic colors based on mode
+  final surface = isDark ? const Color(0xFF1E1E1E) : ColoresApp.surface;
+  final surface2 = isDark
+      ? const Color(0xFF121212)
+      : ColoresApp.surface2; // Background
+  final foreground = isDark ? Colors.white : ColoresApp.foregraund;
 
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: ColoresApp.primario,
-      foregroundColor: ColoresApp.surface,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+  return ThemeData(
+    primaryColor: primaryColor,
+    scaffoldBackgroundColor: surface2,
+    brightness: brightness,
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: primaryColor,
+      brightness: brightness,
+      primary: primaryColor,
+      secondary: ColoresApp.secundario,
+      surface: surface,
+      onPrimary: Colors.white,
+      onSurface: foreground,
     ),
-  ),
-  visualDensity: VisualDensity.adaptivePlatformDensity,
-);
+
+    textTheme: GoogleFonts.interTextTheme(
+      baseTheme.textTheme.copyWith(
+        bodyMedium: TextStyle(color: foreground),
+        bodyLarge: TextStyle(color: foreground),
+      ),
+    ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: primaryColor,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      ),
+    ),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+  );
+}

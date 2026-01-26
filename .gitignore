@@ -43,3 +43,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+.agent/skills/flutter-expert
+.gitignore
+.agents/skills/flutter-expert/references/gorouter-navigation.md
+.agents/skills/flutter-expert/SKILL.md
+.agents/skills/flutter-expert/references/performance.md
+.agents/skills/flutter-expert/references/project-structure.md
+.agents/skills/flutter-expert/references/riverpod-state.md
+.gitignore
+.gitignore
+.gitignore
+.gitignore
+.agents/skills/flutter-expert/references/widget-patterns.md
