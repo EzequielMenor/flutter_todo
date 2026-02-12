@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widget_previews.dart';
 
 import 'package:material/core/colores_app.dart';
 import 'package:material/models/tarea.dart';
 
+/// Widget que representa una tarjeta individual de tarea en la lista.
 class TarjetaTarea extends StatelessWidget {
+  /// La tarea a mostrar.
+  final Tarea tarea;
+
+  /// Callback al eliminar la tarea.
+  final VoidCallback onEliminar;
+
+  /// Callback al cambiar el estado del checkbox.
+  final Function(bool?) onCambiarEstado;
+
+  /// Callback al tocar la tarjeta.
+  final VoidCallback? onTap;
+
+  /// Widget opcional para mostrar al final de la tarjeta.
+  final Widget? trailingWidget;
+
+  /// Constructor del widget.
+  /// Constructor del widget.
   const TarjetaTarea({
     super.key,
     required this.tarea,
@@ -13,12 +30,6 @@ class TarjetaTarea extends StatelessWidget {
     this.onTap,
     this.trailingWidget,
   });
-
-  final Tarea tarea;
-  final VoidCallback onEliminar;
-  final VoidCallback onCambiarEstado;
-  final VoidCallback? onTap;
-  final Widget? trailingWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +44,7 @@ class TarjetaTarea extends StatelessWidget {
           child: Checkbox(
             key: ValueKey<bool>(tarea.completado),
             value: tarea.completado,
-            onChanged: (inx) => onCambiarEstado(),
+            onChanged: (inx) => onCambiarEstado(inx),
             activeColor: ColoresApp.secundario,
             checkColor: ColoresApp.surface2,
             shape: RoundedRectangleBorder(

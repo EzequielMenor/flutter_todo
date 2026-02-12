@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widget_previews.dart';
+
 import 'package:material/core/colores_app.dart';
 import 'package:material/core/theme_manager.dart';
 import 'package:material/models/tarea.dart';
@@ -8,7 +8,9 @@ import 'package:material/widgets/logo.dart';
 import 'package:material/widgets/sin_tareas.dart';
 import 'package:material/widgets/tarjeta_tarea.dart';
 
+/// Pantalla principal que muestra la lista de tareas.
 class PaginaPrincipal extends StatefulWidget {
+  /// Constructor constante.
   const PaginaPrincipal({super.key});
 
   @override
@@ -346,7 +348,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                         child: TarjetaTarea(
                           tarea: tarea,
                           onEliminar: () => _borrarTarea(tarea),
-                          onCambiarEstado: () => _cambiarEstadoTarea(tarea),
+                          onCambiarEstado: (_) => _cambiarEstadoTarea(tarea),
                           onTap: () => _editarTarea(tarea),
                         ),
                       );
@@ -378,7 +380,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                         child: TarjetaTarea(
                           tarea: tarea,
                           onEliminar: () => _borrarTarea(tarea),
-                          onCambiarEstado: () => _cambiarEstadoTarea(tarea),
+                          onCambiarEstado: (_) => _cambiarEstadoTarea(tarea),
                           onTap: () => _editarTarea(tarea),
                           trailingWidget: ReorderableDragStartListener(
                             index: index,

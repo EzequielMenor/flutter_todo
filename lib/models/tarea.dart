@@ -1,6 +1,12 @@
+/// Categorías disponibles para clasificar una tarea.
 enum CategoriaTarea {
+  /// Tareas personales.
   personal,
+
+  /// Tareas relacionadas con el trabajo.
   trabajo,
+
+  /// Otras categorías.
   otro;
 
   String get nombreCapitalizado {
@@ -15,7 +21,9 @@ enum CategoriaTarea {
   }
 }
 
+/// Modelo que representa una tarea en la lista.
 class Tarea {
+  /// Constructor de la clase [Tarea].
   Tarea({
     required this.id,
     required this.nombre,
@@ -24,10 +32,19 @@ class Tarea {
     this.categoria = CategoriaTarea.personal,
   });
 
+  /// Identificador único de la tarea.
   String id;
+
+  /// Nombre o título de la tarea.
   String nombre;
+
+  /// Descripción detallada de la tarea.
   String descripcion;
+
+  /// Estado de finalización de la tarea.
   bool completado;
+
+  /// Categoría a la que pertenece la tarea.
   CategoriaTarea categoria;
 }
 

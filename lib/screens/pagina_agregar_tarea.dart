@@ -4,9 +4,12 @@ import 'package:material/core/colores_app.dart';
 import 'package:material/models/tarea.dart';
 import 'package:material/widgets/logo.dart';
 
+/// Pantalla para crear o editar una tarea existente.
 class PaginaAgregarTarea extends StatefulWidget {
+  /// La tarea a editar, si es null, se crea una nueva.
   final Tarea? tareaParaEditar;
 
+  /// Constructor de la página.
   @Preview(name: "PaginaAgregarTareaPreview")
   const PaginaAgregarTarea({super.key, this.tareaParaEditar});
 
